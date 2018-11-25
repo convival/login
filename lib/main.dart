@@ -39,6 +39,7 @@ class _LoginPageState extends State<LoginPage> {
   _LoginPageState() {
     _emailFilter.addListener(_emailListen);
     _passwordFilter.addListener(_passwordListen);
+
   }
 
   void _emailListen() {
@@ -169,8 +170,27 @@ class _LoginPageState extends State<LoginPage> {
 
   // These functions can self contain any user auth logic required, they all have access to _email and _password
 
-  void _loginPressed () {
-    print('The user wants to login with $_email and $_password');
+  _loginPressed () {
+    Widget _buildButtons() {
+    if ((_email == "harshit@gmail.com") && (_password == "12345")) {
+      print('The user has logged in with $_email and $_password');
+        return new Container(
+          padding: EdgeInsets.all(15.0),
+          child: new Column(
+            children: <Widget>[
+              new RaisedButton(
+                child: new Text('Logged in'),
+                onPressed: _createAccountPressed,
+              ),
+              new FlatButton(
+                child: new Text('Have an account? Click here to login.'),
+                onPressed: _formChange,
+              )
+            ],
+          ),
+        );
+      }
+    }
   }
 
   void _createAccountPressed () {
